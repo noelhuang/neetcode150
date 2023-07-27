@@ -22,6 +22,7 @@ class Solution:
                 my_deque.append((i, temp))
         return my_array
 
+# TODO: Optimize
 """
 Explanation:
 Iterate over the temperatures. Initialize stack, which will contain (index, temperature) tuple.
