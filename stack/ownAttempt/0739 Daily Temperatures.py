@@ -28,5 +28,5 @@ Explanation:
 Iterate over the temperatures. Initialize stack, which will contain (index, temperature) tuple.
 Compare temperature to top value of stack. If none, append to stack including the index. 
 If temperature > popped value of stack, calculate delta in index. THe delta index should be added in an array at the 
-index of the popped value. 
+index of the popped value.
 """
