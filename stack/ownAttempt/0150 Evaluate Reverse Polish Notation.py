@@ -8,30 +8,29 @@ class Solution:
         if len(tokens) == 1:
             return int(tokens[0])
         myStack = deque()
-        value = None
-        for i, token in enumerate(tokens):
-            try:  # check if token is integer, if so add it onto stack
-                myInt = int(token)
-                print(myInt)
-                myStack.append(myInt)
-            except ValueError:
+        for token in tokens:
+            if token not in ["-", "+", "*", "/"]:
+                myStack.append(int(token))
+            else:
                 # token was not an integer, so perform arithmetic
-                if value is None:
-                    b = myStack.pop()
-                    a = myStack.pop()
-                else:
-                    a = value
-                    b = myStack.pop()
+                b = myStack.pop()
+                a = myStack.pop()
                 if token == "/":
-                    value = math.trunc(a / b)
-                    print(f"Perform{a} // {b}, value = {value}")
+                    value = int(a / b)
                 elif token == "+":
                     value = a + b
-                    print(f"Perform{a} + {b}, value = {value}")
                 elif token == "-":
                     value = a - b
-                    print(f"Perform{a} - {b}, value = {value}")
-                elif token == "*":
+                else:
                     value = a * b
-                    print(f"Perform{a} * {b}, value = {value}")
-        return value
+                myStack.append(value)
+        return myStack.pop()
+
+
+"""
+Use a stack to solve reverse polish notation. 
+Iterate over the array of tokens. For each token, if it is a number, add it to the stack. If not, it must be a symbol
+for arithmetic operation + - / *. If it is an operator, pop two values from the stack to perform the arithmetic 
+operation between those two popped values. Append the value back onto the stack, because it will be used for further 
+calculations. 
+"""
